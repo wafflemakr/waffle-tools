@@ -37,6 +37,10 @@ function App() {
     try {
       const provider = await web3Modal.connect();
 
+      provider.on("accountsChanged", (acc) => {
+        setAccount(acc[0]);
+      });
+
       window.web3 = new Web3(provider);
 
       const acc = await window.web3.eth.getAccounts();
